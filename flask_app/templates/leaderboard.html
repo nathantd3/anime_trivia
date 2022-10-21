@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="http://fonts.cdnfonts.com/css/ninja-naruto" rel="stylesheet">
+    <title>Anime Trivia</title>
+</head>
+<body>
+    <h1 class="title">Anime Trivia</h1>
+    <h2 class="leader">Leaderboards</h2>
+    <table class="sortable">
+        <thead class="thead">
+            <tr>
+                <th>Username</th>
+                <th>Score</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody class="overflow-y-scroll h">
+            {% for users in all_users %}
+            <tr>
+                <td>{{users.username}}</td>
+                <td>{{users.score}}</td>
+                <td>{{users.created_at.strftime('%m-%d-%Y')}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        
+    </table>
+    <div class="endButtons">
+        <a href="/play" class="mt-3 bg-white hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded" class="endButton">Play Again</a>
+        <a href="/" class="mt-3 bg-white hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded" class="endButton">Home</a>  
+    </div>
+    <script type="text/javascript" src="{{ url_for('static', filename='game.js') }}"></script>
+    <script src="../static/js/game.js"></script>
+    <script src="../static/js/end.js"></script>
+</body>
+</html>
